@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import {register , login , clearErrors } from '../../actions/authActions';
 
- const Login = ( {props , auth : {isAuthenticated , error } , setAlert , register , login , clearErrors } ) => {
+ const Login = ( { props , auth:{isAuthenticated , error } , setAlert , register , login , clearErrors } ) => {
 
     useEffect(() => {
         if(isAuthenticated) {
@@ -15,7 +15,7 @@ import {register , login , clearErrors } from '../../actions/authActions';
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error , isAuthenticated , props.history ] );
+    }, [error , isAuthenticated ] );
 
 
     const [user , setUser] = useState({
@@ -28,6 +28,7 @@ import {register , login , clearErrors } from '../../actions/authActions';
     const onChange = e => setUser({...user, [e.target.name]: e.target.value});
 
     const onSubmit = e => {
+        
         e.preventDefault();
         if(email === '' || password === '') {
             setAlert('Please fill all the fields' , 'danger');

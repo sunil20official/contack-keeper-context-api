@@ -100,7 +100,7 @@ import {register , clearErrors } from '../../actions/authActions';
 Register.propTypes = {
     auth : PropTypes.object.isRequired,
     setAlert: PropTypes.func.isRequired,
-    reigister: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
 }
 
