@@ -80,4 +80,4 @@ import {
     }
 };
 
-export default contactReducer
+export default contactReducer;

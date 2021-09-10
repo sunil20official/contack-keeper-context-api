@@ -1,11 +1,10 @@
-import React, { useState, useContext ,useEffect } from 'react';
-import ContactContext from '../../context/contact/contactContext';
+import React, { useState , useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addContact , updateContact , clearCurrent } from '../../actions/contactActions';
 
- const ContactForm = () => {
 
-    const contactContext = useContext(ContactContext);
-
-    const {addContact, updateContact , clearCurrent , current } = contactContext;
+ const ContactForm = ( {addContact, updateContact , clearCurrent , current } ) => {
 
     useEffect(() => {
         if(current !== null) {
@@ -18,7 +17,7 @@ import ContactContext from '../../context/contact/contactContext';
                 type:"personal"
             });
         }
-    }, [contactContext, current] );
+    }, [ current] );
 
     const [contact , setContact] = useState({
         name:"",
@@ -98,4 +97,18 @@ import ContactContext from '../../context/contact/contactContext';
     )
 }
 
-export default ContactForm
+ContactForm.propTypes = {
+    current: PropTypes.object.isRequired,
+    addContact: PropTypes.func.isRequired,
+    updateContact: PropTypes.func.isRequired,
+    clearCurrent: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    current: state.contact.current
+})
+
+export default connect(
+    mapStateToProps,
+    { addContact , updateContact , clearCurrent }
+    )(ContactForm);

@@ -1,15 +1,15 @@
-import React , {useContext , useEffect } from 'react'
+import React , { useEffect } from 'react'
 import Contacts from '../contacts/Contacts'
 import ContactForm from '../contacts/ContactForm'
 import ContactFilter from '../contacts/ContactFilter';
-import AuthContext from "../../context/auth/authContext";
+import PropTypes from 'prop-types';
+import { loadUser } from '../../actions/authActions';
+import { connect } from 'react-redux';
 
-
- const Home = () => {
-     const authContext = useContext(AuthContext);
+ const Home = ( { loadUser } ) => {
 
      useEffect(() => {
-         authContext.loadUser();
+         loadUser();
          //eslint-disable-next-line
      } , []);
 
@@ -27,4 +27,11 @@ import AuthContext from "../../context/auth/authContext";
     );
 };
 
-export default Home;
+Home.propTypes = {
+    loadUser : PropTypes.func.isRequired
+}
+
+export default connect(
+    null,
+    { loadUser }
+    )(Home);

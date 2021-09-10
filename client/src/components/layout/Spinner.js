@@ -13,4 +13,4 @@ import spinner from './spinner.gif';
        )
 }
 
-export default Spinner
+export default Spinner;

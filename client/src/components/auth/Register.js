@@ -1,15 +1,11 @@
-import React , { useState , useContext , useEffect  } from 'react';
-import AlertContext from '../../context/alert/alertContext';
-import AuthContext from '../../context/auth/authContext';
+import React , { useState ,  useEffect  } from 'react';
 
- const Register = props => {
-     const alertContext = useContext(AlertContext);
-     const authContext = useContext(AuthContext);
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alertActions';
+import {register , clearErrors } from '../../actions/authActions';
 
-     const { setAlert } = alertContext;
-     const { register , error , clearErrors , isAuthenticated } = authContext;
-
-
+ const Register = ( { props , auth : {isAuthenticated , error } , setAlert , register , clearErrors} ) => {
 
      useEffect(() => {
          if(isAuthenticated) {
@@ -21,7 +17,7 @@ import AuthContext from '../../context/auth/authContext';
              clearErrors();
          }
          // eslint-disable-next-line
-     }, [error , isAuthenticated , props.history ] );
+     }, [error , isAuthenticated ] );
 
     const [user , setUser] = useState({
         name : "",
@@ -101,4 +97,18 @@ import AuthContext from '../../context/auth/authContext';
     )
 }
 
-export default Register;
+Register.propTypes = {
+    auth : PropTypes.object.isRequired,
+    setAlert: PropTypes.func.isRequired,
+    reigister: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+   auth: state.auth
+});
+
+export default connect(
+    mapStateToProps,
+    { setAlert , register , clearErrors }
+   )(Register);

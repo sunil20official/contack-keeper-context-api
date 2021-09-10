@@ -9,9 +9,9 @@ import Login from "./components/auth/Login";
 import Alerts from "./components/layout/Alerts"
 import PrivateRoute from "./components/routing/PrivateRoute";
 
-import AuthState from "./context/auth/AuthState";
-import ContactState from "./context/contact/ContactState";
-import AlertState from "./context/alert/AlertState";
+import { Provider } from 'react-redux';
+import store from './store';
+
 import setAuthToken from "./utils/setAuthToken";
 
 if(localStorage.token) {
@@ -20,9 +20,7 @@ if(localStorage.token) {
 
 const App = () => {
   return (
-    <AuthState>
-      <ContactState>
-        <AlertState>
+        <Provider store = {store}>
           <Router>
             <Fragment className="App">
               <Navbar/>
@@ -37,9 +35,7 @@ const App = () => {
               </div>
             </Fragment>
           </Router>
-        </AlertState>
-      </ContactState>
-    </AuthState>
+      </Provider>
   );
 }
 
