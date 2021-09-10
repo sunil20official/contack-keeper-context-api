@@ -11,7 +11,7 @@ import { getContacts } from '../../actions/contactActions';
      useEffect(() => {
          getContacts();
          // eslint-disable-next-line
-     }, []);
+     }, [getContacts]);
 
      if(contacts !== null && contacts.length === 0 && !loading) {
          return <h4> Please add a Contact </h4>

@@ -1,15 +1,16 @@
 import React , { useState ,  useEffect  } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import {register , clearErrors } from '../../actions/authActions';
 
- const Register = ( { props , auth : {isAuthenticated , error } , setAlert , register , clearErrors} ) => {
-
+ const Register = ( { auth : {isAuthenticated , error } , setAlert , register , clearErrors} ) => {
+    const history = useHistory();
      useEffect(() => {
          if(isAuthenticated) {
-             props.history.push('/');
+            history.push('/');
          }
 
          if(error === 'User already exists') {
@@ -17,7 +18,7 @@ import {register , clearErrors } from '../../actions/authActions';
              clearErrors();
          }
          // eslint-disable-next-line
-     }, [error , isAuthenticated ] );
+     }, [error , isAuthenticated , history.push ] );
 
     const [user , setUser] = useState({
         name : "",

@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
- const Alerts = ({ alert }) => {
+ const Alerts = ({ alerts }) => {
 
     return (
-        alert.length > 0 &&
-        alert.map(alert => (
+        alerts.length > 0 &&
+        alerts.map(alert => (
             <div key={alert.id} className={`alert alert-${alert.type}`} >
                 <i className="fas fa-info-circle" /> {alert.msg}
             </div>
@@ -15,11 +15,11 @@ import PropTypes from 'prop-types';
 };
 
 Alerts.propTypes = {
-    alert: PropTypes.array.isRequired
+    alerts: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-    alert: state.alert
+    alerts: state.alert
 })
 
 export default connect(mapStateToProps)(Alerts);

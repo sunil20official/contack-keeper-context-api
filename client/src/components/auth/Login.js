@@ -2,12 +2,13 @@ import React , { useState , useEffect} from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import {register , login , clearErrors } from '../../actions/authActions';
+import { useHistory } from 'react-router-dom';
 
- const Login = ( { props , auth:{isAuthenticated , error } , setAlert , register , login , clearErrors } ) => {
-
+ const Login = ( { auth:{isAuthenticated , error } , setAlert , register , login , clearErrors } ) => {
+     const history = useHistory();
     useEffect(() => {
         if(isAuthenticated) {
-            props.history.push('/');
+            history.push('/');
         }
 
         if(error === 'Invalid Credentials') {
@@ -15,7 +16,7 @@ import {register , login , clearErrors } from '../../actions/authActions';
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error , isAuthenticated ] );
+    }, [error , isAuthenticated , history.push] );
 
 
     const [user , setUser] = useState({
