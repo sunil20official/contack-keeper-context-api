@@ -6,9 +6,14 @@ import { useHistory } from 'react-router-dom';
 
  const Login = ( { auth:{isAuthenticated , error } , setAlert , register , login , clearErrors } ) => {
      const history = useHistory();
+
+     function redirect() {
+        history.push('/');
+    };
+
     useEffect(() => {
         if(isAuthenticated) {
-            history.push('/');
+            redirect();
         }
 
         if(error === 'Invalid Credentials') {

@@ -8,9 +8,14 @@ import {register , clearErrors } from '../../actions/authActions';
 
  const Register = ( { auth : {isAuthenticated , error } , setAlert , register , clearErrors} ) => {
     const history = useHistory();
+
+    function redirect() {
+        history.push('/');
+    };
+
      useEffect(() => {
          if(isAuthenticated) {
-            history.push('/');
+           redirect();
          }
 
          if(error === 'User already exists') {
