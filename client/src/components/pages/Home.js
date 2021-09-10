@@ -5,11 +5,13 @@ import ContactFilter from '../contacts/ContactFilter';
 import PropTypes from 'prop-types';
 import { loadUser } from '../../actions/authActions';
 import { connect } from 'react-redux';
+import { getContacts } from '../../actions/contactActions';
 
- const Home = ( { loadUser } ) => {
+ const Home = ( { loadUser , getContacts } ) => {
 
      useEffect(() => {
          loadUser();
+         getContacts();
          //eslint-disable-next-line
      } , []);
 
@@ -33,5 +35,5 @@ Home.propTypes = {
 
 export default connect(
     null,
-    { loadUser }
+    { loadUser , getContacts }
     )(Home);

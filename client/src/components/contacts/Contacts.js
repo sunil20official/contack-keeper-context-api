@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getContacts } from '../../actions/contactActions';
 
- const Contacts = ( {contact: {contacts , filtered , loading } , getContacts }) => {
+ const Contacts = ( {contact: {contacts , filtered , loading } , getContacts } ) => {
 
      useEffect(() => {
-         getContacts();
+         
          // eslint-disable-next-line
      }, []);
 

@@ -15,6 +15,7 @@ import {
 
 // Get Contacts from the database
 export const getContacts = () => async (dispatch) => {
+    setLoading();
     try {
         const res = await axios.get('http://localhost:5000/api/contacts');
         dispatch({
